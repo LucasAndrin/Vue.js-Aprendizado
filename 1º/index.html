@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+    <style>
+        /* Text */
+        .text-whitesmoke {
+            color: whitesmoke;
+        }
+        /* Backgrounds */
+        .bg-dark {
+            background-color: #222;
+        }
+    </style>
+</head>
+<body class="bg-dark">
+    <h2 class="text-whitesmoke">Hello World!</h2>
+    <div id="root">
+        <p class="text-whitesmoke">{{nome}}</p>
+    </div>
+    <script>
+        let root = new Vue({
+            el: "#root",
+            data: {
+                nome: "Lucas Andrin"
+            }
+        });
+    </script>
+</body>
+</html>
