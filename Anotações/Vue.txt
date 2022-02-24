@@ -1,0 +1,141 @@
+Para utilizar o Vue é necessário que alguma parte da aplicação esteja identificada com um Id específico
+
+Para que este espaço possa ser utilizada pelo vue, é necessário criar uma instanciação de vue:
+Exemplo:
+<script>
+    let root = new Vue({
+        
+    });
+</script>
+---------------------------------------------- DATES ----------------------------------------------
+<script>
+    let root = new Vue({
+        el: '#root',
+        date: {
+            nome: 'Lucas Andrin'
+        }
+    });
+</script>
+---------------------------------------------- METHODS ----------------------------------------------
+<script>
+    let root = new Vue({
+        el: '#root',
+        date: {
+            // code
+        },
+        methods: {
+            somar: function (){
+                // code
+            }
+        }
+    });
+</script>
+---------------------------------------------- FILTERS ----------------------------------------------
+Consistem em funções que podem ser escutadas dentro do HTML, geralmente usadas para filtrar um valor específico
+Exemplo:
+<div id="root">
+    <p>{{text | upper}}</p>
+</div>
+<script>
+    let root = new Vue({
+        el: '#root',
+        date: {
+            text: 'text',
+        },
+        methods: {
+            // function
+        },
+        filters: {
+            upper(value){
+                return value.toUpperCase();
+            }
+        }
+    });
+</script>
+---------------------------------------------- COMPUTED PROPERTIES ----------------------------------------------
+Consistem em funções que só são executadas quando há alteração em suas dependências
+<script>
+    let root = new Vue({
+        el: '#root',
+        date: {
+            // code
+        },
+        methods: {
+            // code
+        },
+        filters: {
+            //code
+        }
+        computed: {
+            metodo(){
+
+            }
+        }
+    });
+</script>
+---------------------------------------------- DIRETIVAS ----------------------------------------------
+v-model="atributo" -> relactiona valor do elemento ao atributo da instancia Vue
+
+v-if="condition" -> caso a condition seja true, o elemento será carregado pela página, caso contrário substituído por um comentário
+
+v-else -> caso condition seja false, o elemento correpondente a v-else será carregado pela página
+
+v-on:click="funcao" ou @click="funcao" -> caso o elemento seja clicado, executa um metodo
+
+v-for="elemento in array" -> recolhe o elemento do array e o usa dentro do elemento HTML
+
+v-bind:atributo ou :atributo -> permite associar-se a um elemento de um elemento html e inserir variáveis neste
+
+v-html="valor" -> seta valor no elemento considerando a estrutura html que este pode possuir
+
+v-text="valor" -> seta valor no elemento como texto, independente de seu conteúdo
+
+v-once -> todo o conteúdo dentor do elemento se mantém sem modificações
+
+v-pre -> todo o código dentro do elemento é considerado texto
+
+v-show="condition" -> seta no elemento um style="diplay: none" caso condition seja true
+
+---------------------------------------------- COMPONENT ----------------------------------------------
+É possível criar components que podem ser injetados no HTML utilizando apenas suas respectivas tagNames (<new-component></new-component> ou apenas </new-component>)
+<script>
+    Vue.component('new-component', {
+            template: `
+            <div>
+                <h1>Hello World!</h1>
+            </div>
+            `
+    })
+
+    let root = new Vue({
+        el: "#root"
+    });
+</script>
+
+Também é possível setar propriedades que recebem um valor dado na tag do component (<new-component :variavel="..."></new-component>)
+
+<script>
+    Vue.component('new-component', {
+        props: {
+            'variavel'
+        },
+        template: `
+        <div>
+            <h1>Hello World!</h1>
+        </div>
+        `
+    })
+
+    let root = new Vue({
+        el: "#root"
+    });
+</script>
+---------------------------------------------- CICLO DE VIDA DA INSTÂNCIA VUE ----------------------------------------------
+beforeCreate()
+created()
+beforeMount()
+mounted()
+beforeUpdate()
+updated()
+beforeDestroy()
+destroy()
