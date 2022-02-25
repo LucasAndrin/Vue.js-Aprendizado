@@ -1,0 +1,9 @@
+É possível definir props como um objeto JavaScript, podendo definir propriedades para os valores recebidos:
+
+props: {
+    val: {
+        type: -> Pode ser (String, Number, Boolean, Array, Object, Date, Function e Symbol), para englobar mais tipos pode agrupá-los em um array: [String, Number, etc]
+        required: -> Pode ser (true, false)
+        default: -> Valor caso não haja valor passado
+    }
+}

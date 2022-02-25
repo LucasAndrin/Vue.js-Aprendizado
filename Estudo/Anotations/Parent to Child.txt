@@ -1,0 +1,3 @@
+Para passar parâmetros de um componente Parent para um componente Child
+é necessário que tal parâmetro seja passado através do v-bind:recept="atributo"
+no elemento do componente Child, assim sendo recepcionado por props ['recept']

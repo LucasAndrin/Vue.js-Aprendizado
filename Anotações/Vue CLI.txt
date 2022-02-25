@@ -1,1 +1,33 @@
 ---------------------------------------------- VUE CLI ----------------------------------------------
+
+COMPONENTE GLOBAL:
+
+Para criar um componente disponível globalmente, far-se-á sua importação no arquivo main.js por meio de:
+Code: import NomeComponente from './components/.../NomeComponente.vue'
+E então o definirá como um componente global utilizando:
+Code: Vue.component('nome-componente', componente)
+
+----------------------------------------------------------------------------------------------------
+
+COMPONENTE LOCAL:
+
+Para utilizar um componente local, far-se-á sua importação no arquivo Componente utilizado por meio de:
+Code: import NomeComponente from 'endereco';
+
+E por fim é definido seu nome de utilização local dentro de export default:
+
+export default {
+  name: "App",
+  components: {
+    'nome-componente': NomeComponente, // ou apenas Nome Componente
+  },
+};
+</script>
+
+----------------------------------------------------------------------------------------------------
+
+STYLE ASSOCIADO AO COMPONENTE QUE ESTE PERTENCE
+
+Para utiliza um style que funcione apenas em um único componente, é necessário utilizad o atributo scoped em style:
+<style scoped>
+</style>

@@ -1,0 +1,7 @@
+Para mandar uma informação do componente Child para o Parent é necessário utilizar uma função denominada $emit, que cria um evento que pode ser disparado no elemento Pai:
+
+Elemento Filho:
+$emit('alteraNome', 'lucas')
+
+Elemento Pai ao chamar elemento filho:
+<child-element @alteraNome"nome = $event" />

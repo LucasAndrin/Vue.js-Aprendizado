@@ -1,28 +1,25 @@
 <template>
   <div id="app">
-    <p>Componente App.vue</p>
-    <new />
+    <div class="container">
+      <div class="col-md-6 mx-auto mt-5">
+        <div class="p-4 bg-light rounded shadow">
+          <span class="position-relative start-0 top-0 text-muted">App.vue</span>
+          <servidor></servidor>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import New from './components/NewComponent.vue'
-
+import Servidor from './components/Servidor.vue';
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    New
-  }
-}
+    'servidor': Servidor,
+  },
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
