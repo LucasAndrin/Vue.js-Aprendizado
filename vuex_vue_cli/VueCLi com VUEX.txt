@@ -1,0 +1,6 @@
+Para chamar um valor da store em um component:
+computed: {
+    number: function() {
+        return this.$store.state.number
+    }
+}
