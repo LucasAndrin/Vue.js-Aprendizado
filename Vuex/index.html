@@ -11,15 +11,30 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
     <!-- Vuex -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vuex/3.1.1/vuex.min.js"></script>
+    <!-- Fontawasome -->
+    <script src="https://kit.fontawesome.com/6e4529ec54.js" crossorigin="anonymous"></script>
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.4/dist/sweetalert2.all.min.js"></script>
 </head>
 <body>
 
     <div class="container">
         <div class="col-md-8 mt-5 mx-auto">
-            <div class="bg-light p-3">
-                <div id="app">
+            <div class="bg-light shadow-sm rounded">
+                <div id="app" class="p-3">
+                    <p class="text-center">Nome Completo: {{nomeCompleto}}</p>
                     <p class="text-center">Nome: {{getNome}}</p>
                     <p class="text-center">Sobrenome: {{getSobrenome}}</p>
+                    <p class="text-center">Integer: {{getInteger}}</p>
+                    <div class="col-md-12 text-center">
+                        <button class="btn btn-primary" @click="increment"> <i class="fa-solid fa-plus"></i> </button>
+                        <button class="btn btn-primary" @click="decrement"> <i class="fa-solid fa-minus"></i> </button>
+                    </div>
+                    <div class="col-md-12 p-3 text-center">
+                        <div class="bg-secondary shadow rounded">
+                            <componente-interno />
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -30,8 +45,52 @@
         const store = new Vuex.Store({
             state: {
                 nome: 'Lucas',
-                sobrenome: 'Andrin'
+                sobrenome: 'Andrin',
+                integer: 0,
+            },
+            getters: {
+                nomeCompleto: function (state) {
+                    return state.nome + ' ' +  state.sobrenome
+                }
+            },
+            mutations: {
+                increment (state) {
+                    state.integer++;
+                },
+                decrement (state) {
+                    state.integer--;
+                }
+            },
+            actions: {
+                incrementAction: function(context) {
+                    context.commit('increment')
+                    Swal.fire(
+                        'Good job!',
+                        'You clicked the button!',
+                        'success'
+                    )
+                }
             }
+        })
+
+        Vue.component('componente-interno', {
+            template:
+            `
+            <div>
+                <hr>
+                <p>Componente Interno</p>
+                <button class="btn btn-primary" @click="increment"> <i class="fa-solid fa-plus"></i> </button>
+                <button class="btn btn-primary" @click="decrement"> <i class="fa-solid fa-minus"></i> </button>
+            </div>
+            `,
+            methods: {
+                increment() {
+                    store.commit('increment')
+                },
+                decrement() {
+                    store.commit('decrement')
+                }
+            },
         })
 
         //
@@ -43,6 +102,20 @@
                 },
                 getSobrenome: function () {
                     return store.state.sobrenome
+                },
+                getInteger: function () {
+                    return store.state.integer
+                },
+                nomeCompleto: function() {
+                    return store.getters.nomeCompleto
+                }
+            },
+            methods: {
+                increment() {
+                    store.dispatch('incrementAction')
+                },
+                decrement() {
+                    store.commit('decrement')
                 }
             },
         })

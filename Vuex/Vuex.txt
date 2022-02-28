@@ -1,0 +1,90 @@
+------------------------------------------------------ VUEX ------------------------------------------------------
+
+É possível chamar um Vuex criando uma constante que armazena sua instancia:
+const store = new Vuex.Store({
+    state: {
+        valor: ''
+    }
+})
+Dentro de state é possível definir valores que estão dentro da Store.
+
+---------------------------------------- CHAMAR DENTRO DE UM COMPONENETE ----------------------------------------
+Para chamar estes valores é necessário usar um método computed
+new Vue({
+    el: "#app",
+    computed: {
+        getValor: function () {
+            return store.state.valor
+        }
+    }
+})
+
+--------------------------------------------------- MUTATIONS ---------------------------------------------------
+1. criar mutations dentro do Vuex.
+2. criar funções dentro de mutations
+3. em uma instancia Vue chama-se a função dentro da mutations apartir do commmit: store.commit('functionName')
+Exemplo: 
+// VUEX
+const store = new Vuex.Store({
+    state: {
+        nome: 'Lucas',
+        sobrenome: 'Andrin',
+        integer: 0,
+    },
+    mutations: {
+        increment (state) {
+            state.integer++;
+        },
+        decrement (state) {
+            state.integer--;
+        }
+    }
+})
+
+//
+new Vue({
+    el: "#app",
+    computed: {
+        getNome: function () {
+            return store.state.nome
+        },
+        getSobrenome: function () {
+            return store.state.sobrenome
+        },
+        getInteger: function () {
+            return store.state.integer
+        }
+    },
+    methods: {
+        increment() {
+            store.commit('increment')
+        },
+        decrement() {
+            store.commit('decrement')
+        }
+    },
+})
+
+------------------------------------- MUTATIONS DE VUEX EM VÁRIOS COMPONENTS -------------------------------------
+Se for mudado os valores de variáveis do Store Vuex, como é chamada a mesma função dentro das mutations, a mudança
+ocorre sem problemas
+
+----------------------------------------------------- GETTERS -----------------------------------------------------
+dentro da instancia Vuex pode-se criar um setor getters: {}, onde é possível colocar funções que retornam dados
+específicos relacionados ao Vuex com uma formatação se necessário:
+getters: {
+    nomeCompleto: function (state) {
+        return state.nome + ' ' +  state.sobrenome
+    }
+},
+
+----------------------------------------------------- ACTIONS -----------------------------------------------------
+actions consistem em um conjunto de métodos que podem chamar outros métodos dentro da Vuex.Store,
+geralmente sendo usado para executar funcionalidades relacionadas com a comunicação com o servidor.
+
+Para chamar um action é necessário, por meio de uma instancia Vue, usar a função store.dispatch('funcao')
+
+-------------------------------------------- MUTATIONS WITH PARAMETTERS --------------------------------------------
+1. Para o método da mutation receber um valor, deve-se colocar em seus parâmetros um "value"
+2. Para passar um valor, adiciona-se outro parâmetro a função commit('funcao', parametro)
+
